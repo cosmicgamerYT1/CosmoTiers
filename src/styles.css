@@ -179,16 +179,21 @@
     .region { display: inline-flex; align-items: center; gap: 6px; color: #9ab0c8; font-size: 10px; }
     .flag { font-size: 13px; }
     .tier-pill { min-width: 43px; display: inline-flex; justify-content: center; align-items: center; padding: 5px 7px; border-radius: 6px; font: 9px "DM Mono", monospace; font-weight: 500; letter-spacing: .02em; border: 1px solid transparent; }
+    /* Tier 1 stays gold: the highest tier, now labelled Master in the guide. */
     .tier-ht1 { color: #fff0bc; background: rgba(225, 169, 57, .19); border-color: rgba(244, 198, 91, .32); box-shadow: 0 0 12px rgba(241, 188, 75, .06); }
     .tier-lt1 { color: #ffe1a0; background: rgba(213, 147, 47, .13); border-color: rgba(221, 168, 75, .25); }
-    .tier-ht2 { color: #d5c7ff; background: rgba(139, 111, 229, .17); border-color: rgba(165, 139, 255, .27); }
-    .tier-lt2 { color: #d3c8ff; background: rgba(126, 107, 209, .12); border-color: rgba(150, 137, 229, .22); }
-    .tier-ht3 { color: #a7dcff; background: rgba(55, 151, 218, .16); border-color: rgba(93, 180, 242, .27); }
-    .tier-lt3 { color: #a3d2f4; background: rgba(54, 131, 190, .12); border-color: rgba(88, 156, 210, .21); }
-    .tier-ht4 { color: #9be6d0; background: rgba(47, 162, 128, .13); border-color: rgba(85, 196, 159, .24); }
-    .tier-lt4 { color: #94d9c3; background: rgba(45, 137, 112, .12); border-color: rgba(86, 174, 145, .2); }
-    .tier-ht5 { color: #b8c8d9; background: rgba(115, 139, 165, .13); border-color: rgba(139, 164, 189, .2); }
-    .tier-lt5 { color: #a4b5c8; background: rgba(104, 124, 147, .11); border-color: rgba(133, 153, 175, .17); }
+    /* Tier 2 uses a brighter platinum silver, clearly separate from Tier 5 grey. */
+    .tier-ht2 { color: #f1f6fc; background: rgba(190, 207, 224, .2); border-color: rgba(215, 228, 241, .4); box-shadow: 0 0 12px rgba(207, 224, 240, .055); }
+    .tier-lt2 { color: #dce7f1; background: rgba(153, 176, 199, .15); border-color: rgba(190, 209, 226, .3); }
+    /* Tier 3 moves to a warm bronze / brown palette. */
+    .tier-ht3 { color: #f0c49e; background: rgba(151, 91, 48, .23); border-color: rgba(207, 137, 82, .39); }
+    .tier-lt3 { color: #dfad83; background: rgba(127, 76, 43, .17); border-color: rgba(183, 119, 72, .29); }
+    /* Tier 4 takes the former Tier 3 blue palette. */
+    .tier-ht4 { color: #a7dcff; background: rgba(55, 151, 218, .16); border-color: rgba(93, 180, 242, .27); }
+    .tier-lt4 { color: #a3d2f4; background: rgba(54, 131, 190, .12); border-color: rgba(88, 156, 210, .21); }
+    /* Tier 5 stays grey, but darker and more muted than Tier 2's silver. */
+    .tier-ht5 { color: #b0bac7; background: rgba(76, 89, 105, .2); border-color: rgba(125, 141, 160, .25); }
+    .tier-lt5 { color: #929eae; background: rgba(61, 73, 88, .17); border-color: rgba(106, 122, 141, .21); }
     .tier-unranked { color: #758ba4; background: rgba(99, 119, 141, .08); border-color: rgba(123, 147, 170, .13); }
     .rating { font: 11px "DM Mono", monospace; color: #d8ebff; }
     .rating small { color: #6f8dab; font-size: 8px; }
@@ -205,10 +210,10 @@
     .tier-scale { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 13px; }
     .scale-item { display: flex; align-items: center; gap: 6px; padding: 5px 7px; border: 1px solid rgba(130, 170, 209, .1); border-radius: 7px; background: rgba(2, 12, 24, .3); color: #8da5bf; font: 8px "DM Mono", monospace; }
     .scale-dot { width: 6px; height: 6px; border-radius: 2px; background: #f0c16c; }
-    .scale-item:nth-child(2) .scale-dot { background: #a894ff; }
-    .scale-item:nth-child(3) .scale-dot { background: #73caff; }
-    .scale-item:nth-child(4) .scale-dot { background: #6dd7b1; }
-    .scale-item:nth-child(5) .scale-dot { background: #a5b8cb; }
+    .scale-item:nth-child(2) .scale-dot { background: #e1eaf3; }
+    .scale-item:nth-child(3) .scale-dot { background: #bd875d; }
+    .scale-item:nth-child(4) .scale-dot { background: #73caff; }
+    .scale-item:nth-child(5) .scale-dot { background: #788697; }
     .quick-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 13px; }
     .quick-link { border: 1px solid rgba(115, 177, 236, .16); border-radius: 8px; padding: 7px 9px; color: #a9c9e8; font-size: 9px; background: rgba(34, 86, 139, .12); }
     .quick-link:hover { border-color: rgba(115, 177, 236, .38); background: rgba(34, 86, 139, .2); }
