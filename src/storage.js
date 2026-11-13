@@ -1,9 +1,12 @@
-const STORAGE_KEY = 'cosmotiers.players.v2';
-const LEGACY_KEYS = ['cosmotiers-preview-players-v1'];
+const STORAGE_KEY = 'cosmotiers.players.v3';
+const LEGACY_KEYS = [
+  'cosmotiers-preview-players-v1',
+  'cosmotiers.players.v2',
+];
 
 export function loadPlayers() {
   try {
-    // Remove the previous demo-data store so the new leaderboard starts empty.
+    // Start with a clean public leaderboard; discard data from older demo builds.
     for (const key of LEGACY_KEYS) localStorage.removeItem(key);
     const saved = localStorage.getItem(STORAGE_KEY);
     if (!saved) return [];

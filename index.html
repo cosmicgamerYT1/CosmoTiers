@@ -13,7 +13,7 @@
         <span class="brand-mark" aria-hidden="true">
           <svg viewBox="0 0 32 32" fill="none"><path d="M16 3.5 19 12l8.5 4-8.5 3L16 27.5 13 19l-8.5-3 8.5-4L16 3.5Z" stroke="#8bd5ff" stroke-width="1.45" stroke-linejoin="round"/><circle cx="16" cy="16" r="2.2" fill="#dff5ff"/><path d="M5 7.5 6 10l2.5 1L6 12l-1 2.5L4 12l-2.5-1L4 10l1-2.5ZM25.5 21l.9 2.2 2.1.8-2.1.9-.9 2.1-.8-2.1-2.2-.9 2.2-.8.8-2.2Z" fill="#6abfff"/></svg>
         </span>
-        <span><span class="brand-name">Cosmo<span>Tiers</span></span><span class="brand-caption">Minecraft tier network</span></span>
+        <span class="brand-copy"><span class="brand-name">Cosmo<span>Tiers</span></span><span class="brand-caption">Minecraft tier network</span></span>
       </a>
       <nav class="nav" id="mainNav" aria-label="Main navigation">
         <a class="active" href="#rankings">Rankings</a>
@@ -22,15 +22,19 @@
         <a href="#about">About</a>
       </nav>
       <div class="top-actions">
-        <button class="primary-btn" id="openSuggest" type="button">＋ &nbsp; Suggest player</button>
+        <button class="primary-btn" id="openSearch" type="button"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="m12.5 12.5 4 4"/></svg> Search player</button>
         <button class="mobile-menu" id="mobileMenu" type="button" aria-label="Toggle menu" aria-expanded="false"><svg viewBox="0 0 20 20" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 5h14M3 10h14M3 15h14"/></svg></button>
       </div>
     </header>
 
+    <div class="server-strip shell" aria-label="Server information">
+      <div class="server-ip-card"><span class="server-ip-label">SERVER IP</span><span class="server-ip-value" aria-label="Server IP will be added later"></span></div>
+    </div>
+
     <main id="top" class="shell">
       <section class="hero" id="rankings">
         <div>
-          <div class="eyebrow"><span class="eyebrow-line"></span> THE COSMIC COMPETITIVE INDEX</div>
+          <div class="eyebrow"><span class="eyebrow-line"></span> THE COSMIC COMPETITIVE RANKINGS</div>
           <h1><span class="gradient">Player Rankings</span></h1>
           <p class="hero-sub">The Minecraft PvP leaderboard.<br>Find the top players across every competitive mode.</p>
         </div>
@@ -57,7 +61,7 @@
             <thead id="tableHead"></thead>
             <tbody id="leaderboardBody"></tbody>
           </table>
-          <div class="empty-state" id="emptyState" role="status"><strong>No players ranked yet</strong><span>Be the first to appear on the CosmoTiers leaderboard.<br>Use “Suggest player” to add a local preview entry.</span></div>
+          <div class="empty-state" id="emptyState" role="status"><strong>No players ranked yet</strong><span>Search for a player or add a community suggestion to your local preview.</span><button class="empty-suggest" id="emptySuggestButton" type="button">＋ Suggest a player</button></div>
         </div>
         <div class="table-foot"><span>SHOWING <strong id="shownCount">0</strong> / 10 PLAYERS</span><span id="tableFootMode">✦ &nbsp; SWORD RANKINGS</span></div>
       </section>
@@ -67,22 +71,33 @@
           <h3>Tier guide</h3>
           <p>Each game mode has its own ladder. HT means High Tier and LT means Low Tier. Tier 1 is the highest level; Tier 5 is the entry level.</p>
           <div class="tier-scale">
-            <span class="scale-item"><i class="scale-dot"></i> T1 · Elite</span>
-            <span class="scale-item"><i class="scale-dot"></i> T2 · Master</span>
-            <span class="scale-item"><i class="scale-dot"></i> T3 · Advanced</span>
-            <span class="scale-item"><i class="scale-dot"></i> T4 · Skilled</span>
-            <span class="scale-item"><i class="scale-dot"></i> T5 · Ranked</span>
+            <span class="scale-item"><i class="scale-dot"></i><strong>T1</strong><span>Elite</span></span>
+            <span class="scale-item"><i class="scale-dot"></i><strong>T2</strong><span>Master</span></span>
+            <span class="scale-item"><i class="scale-dot"></i><strong>T3</strong><span>Advanced</span></span>
+            <span class="scale-item"><i class="scale-dot"></i><strong>T4</strong><span>Skilled</span></span>
+            <span class="scale-item"><i class="scale-dot"></i><strong>T5</strong><span>Ranked</span></span>
           </div>
         </div>
         <div class="info-panel" id="about">
           <h3>About CosmoTiers</h3>
           <p>A community-focused Minecraft PvP ranking hub with a separate leaderboard for every discipline. Suggestions in this starter project are saved locally in your browser.</p>
-          <div class="quick-links"><a class="quick-link" href="#rankings">↑ Back to rankings</a><button class="quick-link" id="exportButton" type="button">↓ Export player data</button></div>
+          <div class="quick-links"><a class="quick-link" href="#rankings">↑ Back to rankings</a><button class="quick-link" id="suggestPlayerLink" type="button">＋ Suggest a player</button><button class="quick-link" id="exportButton" type="button">↓ Export player data</button></div>
         </div>
       </section>
 
       <footer><span><strong>CosmoTiers</strong> &nbsp;·&nbsp; Minecraft PvP tier network</span><span>Not affiliated with Mojang or Microsoft.</span></footer>
     </main>
+
+    <div class="modal-backdrop" id="playerSearchModal" aria-hidden="true">
+      <section class="modal search-modal" role="dialog" aria-modal="true" aria-labelledby="playerSearchTitle">
+        <div class="modal-head"><div><div class="modal-kicker">COSMOTIERS PLAYER DATABASE</div><h2 id="playerSearchTitle">Search player</h2></div><button class="close-btn" data-close="playerSearchModal" type="button" aria-label="Close">×</button></div>
+        <div class="modal-body">
+          <label class="search-modal-label" for="profileSearchInput">Minecraft username</label>
+          <div class="profile-search-field"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="m12.5 12.5 4 4"/></svg><input class="form-control" id="profileSearchInput" type="search" maxlength="16" autocomplete="off" placeholder="Enter a Minecraft username..."></div>
+          <div id="profileSearchResults" class="profile-search-results" aria-live="polite"><div class="search-empty"><span class="search-empty-icon">⌕</span><strong>Find a ranked player</strong><span>Enter a Minecraft username to view their profile, tiers and leaderboard position.</span></div></div>
+        </div>
+      </section>
+    </div>
 
     <div class="modal-backdrop" id="profileModal" aria-hidden="true">
       <section class="modal" role="dialog" aria-modal="true" aria-labelledby="profileTitle">

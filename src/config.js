@@ -1,19 +1,23 @@
-export const MODES = [
-  { id: 'Sword', label: 'Sword', icon: '⚔' },
-  { id: 'Axe', label: 'Axe', icon: '⛏' },
-  { id: 'Mace', label: 'Mace', icon: '✦' },
-  { id: 'UHC', label: 'UHC', icon: '♥' },
-  { id: 'NethOP', label: 'NethOP', icon: '◇' },
-  { id: 'Pot', label: 'Pot', icon: '⚗' },
-  { id: 'SMP', label: 'SMP', icon: '◈' },
-  { id: 'Crystal', label: 'Crystal', icon: '◆' },
-  { id: 'TNT Minecart', label: 'TNT Minecart', icon: '▣' },
-  { id: 'Spear', label: 'Spear', icon: '➶' },
-  { id: 'Trident', label: 'Trident', icon: '♆' },
+export const COMPETITIVE_MODES = [
+  { id: 'Sword', label: 'Sword', icon: '/icons/sword.svg' },
+  { id: 'Axe', label: 'Axe', icon: '/icons/axe.svg' },
+  { id: 'Mace', label: 'Mace', icon: '/icons/mace.svg' },
+  { id: 'UHC', label: 'UHC', icon: '/icons/uhc.svg' },
+  { id: 'NethOP', label: 'NethOP', icon: '/icons/nethop.svg' },
+  { id: 'Pot', label: 'Pot', icon: '/icons/pot.svg' },
+  { id: 'SMP', label: 'SMP', icon: '/icons/smp.svg' },
+  { id: 'Crystal', label: 'Crystal', icon: '/icons/crystal.svg' },
+  { id: 'TNT Minecart', label: 'TNT Minecart', icon: '/icons/tnt-minecart.svg' },
+  { id: 'Spear', label: 'Spear', icon: '/icons/spear.svg' },
+  { id: 'Trident', label: 'Trident', icon: '/icons/trident.svg' },
 ];
 
-export const DEFAULT_MODE = 'Sword';
+export const OVERALL_MODE = { id: 'Overall', label: 'Overall', icon: '/icons/overall.svg' };
+export const MODES = [OVERALL_MODE, ...COMPETITIVE_MODES];
+export const DEFAULT_MODE = 'Overall';
+export const DEFAULT_SUGGEST_MODE = 'Sword';
 
+// HT1 is highest. Each tier step has a distinct score for deterministic sorting.
 export const TIER_SCORE = {
   HT1: 10,
   LT1: 9,
