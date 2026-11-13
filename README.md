@@ -30,7 +30,7 @@ cosmotiers/
 ├── package.json
 ├── vite.config.js
 ├── public/
-│   └── icons/             # Mode icons (provided and temporary placeholders)
+│   └── icons/             # Overall and game-mode SVG icons
 └── src/
     ├── config.js          # Modes, icon paths, tiers and region metadata
     ├── main.js            # App startup, search and event handling
@@ -56,6 +56,16 @@ cosmotiers/
 
 The Overall leaderboard adds the tier scores across the 11 competitive modes. Each mode has its own independent tier ladder and ranking order.
 
+## Tier guide labels and colours
+
+- Tier 1 — Master (gold)
+- Tier 2 — Elite (silver)
+- Tier 3 — Advanced (bronze / brown)
+- Tier 4 — Skilled (blue)
+- Tier 5 — Beginner (grey)
+
+HT and LT badges share their tier colour family, with high-tier and low-tier shades distinguished in the stylesheet.
+
 ## Player search and profiles
 
 - The **Search player** button opens a centered username search dialog.
@@ -73,7 +83,7 @@ The Overall leaderboard adds the tier scores across the 11 competitive modes. Ea
 
 ## Icons
 
-The supplied icons are currently assigned to Sword, Axe, Mace, UHC, NethOP, Pot and SMP. Overall, Crystal, TNT Minecart, Spear and Trident use temporary matching blue SVG icons. Replace the corresponding files in `public/icons/` when the remaining final images are provided; keep the same filenames or update `src/config.js`.
+All 12 supplied SVG icons are now installed and assigned to their matching entries: Overall, Sword, Axe, Mace, UHC, NethOP, Pot, SMP, Crystal, TNT Minecart, Spear and Trident. The five latest icons are assigned to Overall, Crystal, TNT Minecart, Spear and Trident.
 
 ## Notes
 
