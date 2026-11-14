@@ -22,7 +22,25 @@
         <a href="#about">About</a>
       </nav>
       <div class="top-actions">
-        <button class="primary-btn" id="openSearch" type="button"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="m12.5 12.5 4 4"/></svg> Search player</button>
+        <button class="primary-btn" id="openSearch" type="button"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="m12.5 12.5 4 4"/></svg><span class="search-button-label">Search player</span></button>
+        <div class="auth-button-stack" id="authButtons">
+          <button class="auth-mini auth-mini-signup" id="openSignup" type="button">Sign up</button>
+          <button class="auth-mini auth-mini-signin" id="openSignin" type="button">Sign in</button>
+        </div>
+        <div class="profile-control" id="profileControl" hidden>
+          <button class="profile-trigger" id="profileTrigger" type="button" aria-label="Open account menu" aria-expanded="false" aria-controls="profileMenu">
+            <img id="profileTriggerImage" alt="" hidden>
+            <span id="profileTriggerInitials">CG</span>
+          </button>
+          <div class="profile-menu" id="profileMenu" hidden>
+            <div class="profile-menu-user">
+              <div class="profile-menu-avatar" id="profileMenuAvatar">CG</div>
+              <div class="profile-menu-copy"><strong id="profileMenuName">Cosmic Gamer</strong><span id="profileMenuEmail"></span></div>
+            </div>
+            <div class="profile-menu-meta"><span id="profileMenuRole">LOCAL MEMBER</span><span>THIS BROWSER</span></div>
+            <button class="profile-menu-signout" id="signOutButton" type="button">Sign out</button>
+          </div>
+        </div>
         <button class="mobile-menu" id="mobileMenu" type="button" aria-label="Toggle menu" aria-expanded="false"><svg viewBox="0 0 20 20" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 5h14M3 10h14M3 15h14"/></svg></button>
       </div>
     </header>
@@ -119,6 +137,20 @@
         </form>
       </section>
     </div>
+    <div class="modal-backdrop" id="authModal" aria-hidden="true">
+      <section class="modal auth-modal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+        <div class="modal-head">
+          <div><div class="modal-kicker">COSMOTIERS ACCOUNT</div><h2 id="authTitle">Welcome to CosmoTiers</h2></div>
+          <button class="close-btn" data-close="authModal" type="button" aria-label="Close">×</button>
+        </div>
+        <div class="auth-tabs" role="tablist" aria-label="Account action">
+          <button class="auth-tab active" data-auth-mode="signin" type="button" role="tab" aria-selected="true">Sign in</button>
+          <button class="auth-tab" data-auth-mode="signup" type="button" role="tab" aria-selected="false">Create account</button>
+        </div>
+        <div class="modal-body auth-body" id="authContent"></div>
+      </section>
+    </div>
+
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
     <script type="module" src="./src/main.js"></script>

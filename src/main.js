@@ -1,6 +1,7 @@
 import './styles.css';
 import { DEFAULT_MODE, DEFAULT_SUGGEST_MODE, COMPETITIVE_MODES, MODES, TIER_OPTIONS } from './config.js';
 import { loadPlayers, savePlayers } from './storage.js';
+import { initAuth } from './auth.js';
 import {
   escapeHtml, renderModeTabs, renderPlayerSearch, renderProfile,
   renderRows, renderTableHead,
@@ -187,3 +188,4 @@ function bindEvents() {
 populateModeOptions();
 bindEvents();
 render();
+initAuth({ showModal, closeModal, showToast });

@@ -32,6 +32,7 @@ cosmotiers/
 ├── public/
 │   └── icons/             # Overall and game-mode SVG icons
 └── src/
+    ├── auth.js            # Local accounts, profile pictures and sessions
     ├── config.js          # Modes, icon paths, tiers and region metadata
     ├── main.js            # App startup, search and event handling
     ├── render.js          # Tabs, leaderboard and player profiles
@@ -88,3 +89,16 @@ All 12 supplied SVG icons are now installed and assigned to their matching entri
 ## Notes
 
 This is a frontend starter project. To make player rankings searchable across devices and visitors, connect the website to a shared backend/database in a later stage. At present, suggestions and player data remain in local browser storage.
+
+
+## Local account preview (v2.3)
+
+Email addresses are not verified in this local prototype, and there is no password-reset email flow.
+
+The account interface supports local sign-up and sign-in using a unique username, email address and password. Passwords are stored as salted PBKDF2-SHA-256 hashes using the Web Crypto API; the original password is not stored. Optional profile pictures are resized and stored locally in the browser. The session and account registry use browser local storage.
+
+The username `Cosmic Gamer` receives the local `owner` role when it is first registered in that browser. Other usernames receive the `member` role. The profile menu shows the local role; owner-only tools can be added later.
+
+**Important limitations:** this is a browser-local demonstration, not a shared authentication service. Username and email uniqueness applies only to one browser profile on one site origin. It cannot reserve a username globally, sync accounts to another device, or make owner permissions secure against someone editing browser storage or client-side code. Do not use this client-only prototype for real production accounts or sensitive data. A real public account system needs a server-side database, server-side authentication and authorization, and secure session handling.
+
+Google and Discord buttons are included in the interface but currently explain that OAuth is not configured. To enable them, create OAuth applications with each provider and connect them through a backend authentication service; provider secrets must never be placed in frontend code.
