@@ -793,10 +793,10 @@ th.mode-column, td.mode-column { width: 82px; }
 .auth-button-stack[hidden],
 .profile-control[hidden],
 img[hidden] { display: none !important; }
-/* Keep the main player action first, with the signed-in avatar (or auth buttons) on its right. */
-#openSearch { order: 0; white-space: nowrap; }
+/* Keep the player action anchored at the far right; account controls use the open space immediately to its left. */
 .auth-button-stack,
-.profile-control { order: 1; }
+.profile-control { order: 0; }
+#openSearch { order: 1; white-space: nowrap; }
 .mobile-menu { order: 2; }
 .profile-trigger { padding: 0; aspect-ratio: 1 / 1; }
 .profile-trigger img,
