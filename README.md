@@ -91,7 +91,7 @@ All 12 supplied SVG icons are now installed and assigned to their matching entri
 This is a frontend starter project. To make player rankings searchable across devices and visitors, connect the website to a shared backend/database in a later stage. At present, suggestions and player data remain in local browser storage.
 
 
-## Local account preview (v2.3)
+## Local account preview (v2.4)
 
 Email addresses are not verified in this local prototype, and there is no password-reset email flow.
 
@@ -102,3 +102,12 @@ The username `Cosmic Gamer` receives the local `owner` role when it is first reg
 **Important limitations:** this is a browser-local demonstration, not a shared authentication service. Username and email uniqueness applies only to one browser profile on one site origin. It cannot reserve a username globally, sync accounts to another device, or make owner permissions secure against someone editing browser storage or client-side code. Do not use this client-only prototype for real production accounts or sensitive data. A real public account system needs a server-side database, server-side authentication and authorization, and secure session handling.
 
 Google and Discord buttons are included in the interface but currently explain that OAuth is not configured. To enable them, create OAuth applications with each provider and connect them through a backend authentication service; provider secrets must never be placed in frontend code.
+
+
+## Vercel deployment (v2.4)
+
+This project uses Vite. In Vercel, set the project **Root Directory** to `cosmotiers` if the repository contains this folder, set the **Build Command** to `npm run build`, and set the **Output Directory** to `dist`. The included `vercel.json` also declares the Vite build and output directory. After deploying, open the same production domain and hard-refresh once (Ctrl+F5) to load the new assets.
+
+The account buttons are now correctly hidden after a local sign-in, and the signed-in session is restored from that browser's local storage on reload. Because local storage is scoped to a browser and site origin, accounts do not follow users between Vercel preview URLs, production domains, browsers, or devices. A shared account service still requires a backend.
+
+Profile pictures are cropped to a square with a slightly top-biased focal position before being saved. Existing saved profile pictures also use a zoomed, top-biased circular crop; newly uploaded pictures receive the square crop as well.

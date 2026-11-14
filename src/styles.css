@@ -771,3 +771,85 @@ th.mode-column, td.mode-column { width: 82px; }
   .top-actions { gap: 5px; }
   .mobile-menu { width: 32px; height: 32px; }
 }
+
+
+/* CosmoTiers v2.4 — right-anchored header actions and social-style avatars */
+.topbar {
+  display: grid;
+  grid-template-columns: minmax(230px, 1fr) auto minmax(255px, 1fr);
+  column-gap: 18px;
+}
+.topbar > .brand { justify-self: start; }
+.topbar > .nav { justify-self: center; }
+.topbar > .top-actions {
+  justify-self: end;
+  margin-left: auto;
+  min-width: 0;
+  width: max-content;
+  max-width: 100%;
+  gap: 11px;
+}
+/* Author CSS display:flex overrides the browser's default [hidden] style. */
+.auth-button-stack[hidden],
+.profile-control[hidden],
+img[hidden] { display: none !important; }
+.auth-button-stack { order: 0; }
+.profile-control { order: 0; }
+#openSearch { order: 1; white-space: nowrap; }
+.profile-trigger { padding: 0; aspect-ratio: 1 / 1; }
+.profile-trigger img,
+.profile-menu-avatar img,
+.auth-avatar-preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 24%;
+}
+.profile-trigger img {
+  transform: scale(1.12);
+  transform-origin: 50% 28%;
+}
+.profile-menu-avatar img,
+.auth-avatar-preview img { object-position: 50% 24%; }
+
+@media (max-width: 1000px) {
+  .topbar { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); }
+  .topbar > .top-actions { min-width: 0; }
+}
+@media (max-width: 880px) {
+  .topbar { grid-template-columns: minmax(0, 1fr) auto; }
+  .topbar > .nav {
+    display: none;
+    position: absolute;
+    top: calc(100% - 1px);
+    right: 0;
+    height: auto;
+    width: 190px;
+    padding: 10px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    border: 1px solid var(--line-strong);
+    border-radius: 12px;
+    background: #0c1c30;
+    box-shadow: var(--shadow);
+  }
+  .topbar > .nav.open { display: flex; }
+  .topbar > .nav a { padding: 11px; }
+  .topbar > .nav a.active::after { display: none; }
+  .topbar > .top-actions { grid-column: 2; grid-row: 1; }
+  .topbar > .brand { grid-column: 1; grid-row: 1; }
+  .mobile-menu { display: grid; place-items: center; }
+}
+@media (max-width: 520px) {
+  .topbar > .top-actions { gap: 6px; }
+  .auth-mini { min-width: 58px; }
+  #openSearch { padding: 8px 10px; }
+}
+@media (max-width: 390px) {
+  .topbar > .top-actions { gap: 5px; }
+  .search-button-label { display: none; }
+  #openSearch { width: 34px; min-width: 34px; height: 34px; padding: 0; display: grid; place-items: center; }
+  #openSearch svg { margin: 0; }
+}

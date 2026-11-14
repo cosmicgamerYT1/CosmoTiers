@@ -251,15 +251,22 @@ async function prepareAvatar(file) {
   } catch {
     throw new Error('That image could not be opened. Try a PNG, JPG or WEBP file.');
   }
-  const longestSide = Math.max(bitmap.width, bitmap.height);
-  const scale = Math.min(1, 320 / longestSide);
+  // Make a square avatar crop (rather than letterboxing the complete image).
+  // The crop is horizontally centred and slightly top-biased, like common social avatars.
+  const cropSize = Math.min(bitmap.width, bitmap.height);
+  const sourceX = (bitmap.width - cropSize) / 2;
+  const sourceY = (bitmap.height - cropSize) * 0.18;
   const canvas = document.createElement('canvas');
-  canvas.width = Math.max(1, Math.round(bitmap.width * scale));
-  canvas.height = Math.max(1, Math.round(bitmap.height * scale));
+  canvas.width = 256;
+  canvas.height = 256;
   const context = canvas.getContext('2d');
-  context.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+  if (!context) {
+    bitmap.close?.();
+    throw new Error('Your browser could not prepare that profile picture.');
+  }
+  context.drawImage(bitmap, sourceX, sourceY, cropSize, cropSize, 0, 0, 256, 256);
   bitmap.close?.();
-  return canvas.toDataURL('image/jpeg', 0.84);
+  return canvas.toDataURL('image/jpeg', 0.88);
 }
 
 async function handleSignup(form) {
@@ -441,6 +448,14 @@ export function initAuth(helpers) {
     localStorage.removeItem(SESSION_KEY);
     updateAuthUI(null);
     showToast('You have signed out. Your local account is still saved.');
+  });
+
+  // localStorage is scoped to the deployed origin. Reflect sign-in/out changes
+  // in other open tabs on the same Vercel domain as well.
+  window.addEventListener('storage', (event) => {
+    if (event.key === SESSION_KEY || event.key === USERS_KEY) {
+      updateAuthUI(restoreSession());
+    }
   });
 
   renderAuthForm('signin');
